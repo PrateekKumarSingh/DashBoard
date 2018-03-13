@@ -20,5 +20,7 @@ $redditposts = foreach($post in $rawposts){
     }
 }
 
-$redditposts | Where-Object {$_.createdutc -gt (get-date).AddDays(-1.25)}  | sort ups, numcomments -Descending | Select-Object -First $count |ft -AutoSize
+$redditposts | Where-Object {$_.createdutc -gt (get-date).AddDays(-1.25)} `
+             | Sort-Object ups, numcomments -Descending `
+             | Select-Object -First $count |ft -AutoSize
 

@@ -27,3 +27,19 @@ Function Convert-PythonDictionaryToPowershellHashTable ($DictionaryAsString)
     
     $hash
 }
+
+
+function Parse-CustomDate
+{
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$DateString,
+        [string]$DateFormat = 'ddd MMM d HH:mm:ss yyyy',
+        [cultureinfo]$Culture = $(Get-UICulture)
+    )
+
+    # replace double space by a single one
+    $DateString = $DateString -replace '\s+', ' '
+
+    [Datetime]::ParseExact($DateString, $DateFormat, $Culture)
+}
